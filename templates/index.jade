@@ -1,0 +1,29 @@
+doctype html
+html(class="no-js", lang="en", ng-app="myApp")
+	head
+		title factual api
+		meta(name="viewport" content="width=device-width, initial-scale=1")
+		link(href="http://fonts.googleapis.com/css?family=Maven+Pro:400,700,900" rel="stylesheet" type="text/css")
+		link(rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css")
+		link(rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css")
+		link(rel="stylesheet" href="stylesheets/screen.css")
+	body
+
+		.header.center-justify
+			h1 factual api
+
+		div(ui-view)
+
+		.footer.center-justify
+			p Copyright &copy; 2014 Aaron John Schlosser.
+
+		script(src="bower_components/jquery/dist/jquery.min.js")
+		script(src="bower_components/angular/angular.js")
+		script(src="bower_components/ui-router/release/angular-ui-router.min.js")
+		script(src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js")
+		script(src="bower_components/angular-cookie/angular-cookie.min.js")
+		script(src="js/app.js")
+		script(src="js/controllers.js")
+		script(src="js/directives.js")
+		script(src="js/filters.js")
+		script(src="js/services.js")

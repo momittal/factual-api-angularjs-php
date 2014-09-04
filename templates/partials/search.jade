@@ -1,0 +1,131 @@
+.search-container
+	.row
+		.col-md-12
+			form.search.form-search
+				fieldset
+					input.search-query.form-control(type="text" name="query" placeholder="type what you're looking for" ng-model="query" autofocus)
+					.add-container.center-justify(ng-controller="collapseController")
+						button.btn.btn-primary(type="submit" ng-click="getData()") get data
+						button.btn.btn-success(ng-click="toggle()") add data
+						.collapsed.left-justify(collapse="isCollapsed")
+							.add-form.left-justify(ng-controller="addEntryController")
+								.row
+									.col-md-12
+										h2 add an entry to the database
+								.row
+									.col-md-12
+										h4 Name
+								.row
+									.col-md-12
+										label(for="name") Name
+										input(type="text" id="name" ng-model="name" placeholder="Dewey, Cheatham, & Howe")
+								.row
+									.col-md-12
+										h4 Address and Location Details
+								.row
+									.col-md-6.left-justify
+										label(for="address") Address
+										input(type="text" id="address" ng-model="address" placeholder="12 Dante's Inferno")
+										label(for="address") City
+										input(type="text" ng-model="locality" placeholder="San Diego")
+										label(for="region") State/Region
+										input(type="text" ng-model="region" placeholder="CA")
+									.col-md-6.left-justify
+										label(for="postcode") Postcode
+										input(type="text" ng-model="postcode" placeholder="92110")
+										label(for="country") Country
+										input(type="text" ng-model="country" placeholder="USA")
+								.row
+									.col-md-12
+										h4 Contact Details
+								.row
+									.col-md-6
+										label(for="tel") Phone
+										input(type="tel" ng-model="tel" placeholder="555-555-5555")
+									.col-md-6
+										label(for="tel") Website URL
+										input(type="website" id="website" ng-model="website" placeholder="http://www.deweycheatamandhowe.com")
+								.row
+									.col-md-12.right-justify
+										button.btn.btn-success(ng-click="add()") submit
+								.row(ng-if="messageAdd.text")
+									.col-md-12.center-justify
+										p.alert(class="{{messageAdd.type}}") {{messageAdd.text}}
+			p.alert.center-justify(ng-if="messageGetData.text" class="{{messageGetData.type}}") {{messageGetData.text}}
+	.row.results-container
+		.col-md-12
+			table.table.table-striped.table-hover.results.left-justify(ng-if="data")
+				thead
+					th Name
+					th Address
+					th City
+					th State/Region
+					th Postcode
+					th Country
+					th Phone
+					th URL
+					th Labels
+					th
+				tbody(ng-repeat="entry in data")
+					td {{entry.name}}
+					td {{entry.address}}
+					td {{entry.locality}}
+					td {{entry.region}}
+					td {{entry.postcode}}
+					td {{entry.country}}
+					td {{entry.tel}}
+					td {{entry.website}}
+					td: span(ng-repeat="label in entry.category_labels[0]") {{label}};&nbsp;
+					td
+						.edit-entry-modal(ng-controller="editEntryModalController")
+							button.btn.btn-primary(ng-click="open(entry)") edit
+							script(type="text/ng-template" id="myModalContent.html")
+								.modal-header
+									h2.center-justify(ng-if="entry.name == name") {{entry.name}}
+								.modal-body
+									form.edit
+										.row
+											.col-md-12
+												label.control-label(for="name") Name
+												input(type="text" id="name" value="{{entry.name}}")
+										.row
+											.col-md-12
+												h3 Address and Location Details
+										.row
+											.col-md-6
+												label(for="address") Address
+												input(type="text" id="address" value="{{entry.address}}")
+												label(for="address") City
+												input(type="text" id="locality" value="{{entry.locality}}")
+												label(for="region") State/Region
+												input(type="text" id="region" value="{{entry.region}}")
+											.col-md-6
+												label(for="postcode") Postcode
+												input(type="text" id="postcode" value="{{entry.postcode}}")
+												label(for="country") Country
+												input(type="text" id="country" value="{{entry.country}}")
+										.row
+											.col-md-12
+												h3 Contact Details
+										.row
+											.col-md-6
+												label(for="tel") Phone
+												input(type="tel" id="tel" value="{{entry.tel}}")
+											.col-md-6
+												label(for="tel") Website URL
+												input(type="website" id="website" ng-model="website" value="{{entry.website}}")
+										.row
+											.col-md-12
+								.modal-footer(ng-controller="editEntryController")
+									p.alert.center-justify(ng-if="messageEdit.text" class="{{messageEdit.type}}") {{messageEdit.text}}
+									button.btn.btn-primary(ng-click="edit(entry)") submit
+									button.btn.btn-primary(ng-click="ok()") close
+									.footer.center-justify
+										img(src="img/hrwlogo1.png")
+	.row
+		.col-md-12.center-justify
+			button.btn.btn-primary.spaced(ng-click="clear()" ng-if="data") clear
+
+
+
+

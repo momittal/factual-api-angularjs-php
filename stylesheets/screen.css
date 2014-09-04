@@ -1,0 +1,141 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+/* line 7, ../sass/partials/_app.scss */
+body {
+  padding-bottom: 20px;
+  font: 14px "Maven Pro", sans-serif;
+}
+
+/* line 12, ../sass/partials/_app.scss */
+form.search {
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 50%;
+}
+/* line 15, ../sass/partials/_app.scss */
+form.search input {
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  display: block;
+  margin-top: 10px;
+}
+
+/* line 23, ../sass/partials/_app.scss */
+.add-container button {
+  margin: 12px 6px;
+}
+/* line 26, ../sass/partials/_app.scss */
+.add-container .add-form {
+  margin: 15px 0;
+  padding: 15px 30px;
+  border: 1px solid gray;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+}
+/* line 31, ../sass/partials/_app.scss */
+.add-container .add-form label {
+  display: block;
+}
+/* line 34, ../sass/partials/_app.scss */
+.add-container .add-form input {
+  display: inline-block;
+  margin-bottom: 4px;
+  margin-top: 0;
+}
+/* line 39, ../sass/partials/_app.scss */
+.add-container .add-form button {
+  margin-top: 10px;
+}
+
+/* line 45, ../sass/partials/_app.scss */
+table.results {
+  width: 90%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+/* line 48, ../sass/partials/_app.scss */
+table.results th {
+  text-transform: uppercase;
+}
+
+/* line 53, ../sass/partials/_app.scss */
+.center-margins {
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
+/* line 59, ../sass/partials/_app.scss */
+.left-justify {
+  text-align: left;
+}
+
+/* line 62, ../sass/partials/_app.scss */
+.right-justify {
+  text-align: right;
+}
+
+/* line 65, ../sass/partials/_app.scss */
+.center-justify {
+  text-align: center;
+}
+
+/* line 69, ../sass/partials/_app.scss */
+.modal-body {
+  margin: 15px 30px;
+}
+/* line 71, ../sass/partials/_app.scss */
+.modal-body input {
+  display: block;
+}
+/* line 74, ../sass/partials/_app.scss */
+.modal-body label {
+  margin-top: 4px;
+  text-transform: uppercase;
+}
+
+/* line 80, ../sass/partials/_app.scss */
+p.alert {
+  margin: 10px 0;
+}
+
+/* line 84, ../sass/partials/_app.scss */
+.results-container {
+  margin-top: 25px;
+}
+
+/* line 89, ../sass/partials/_app.scss */
+form h4 {
+  padding-top: 5px;
+}
+/* line 90, ../sass/partials/_app.scss */
+form #name, form #address, form #website {
+  width: 100%;
+}
+
+/* line 95, ../sass/partials/_app.scss */
+.header {
+  margin: 25px 0;
+}
+
+/* line 99, ../sass/partials/_app.scss */
+.footer {
+  margin: 25px 0;
+}
+/* line 101, ../sass/partials/_app.scss */
+.footer p {
+  margin-top: 15px;
+}
+
+/* line 103, ../sass/partials/_app.scss */
+.spaced {
+  margin: 6px;
+}

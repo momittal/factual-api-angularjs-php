@@ -1,0 +1,16 @@
+{
+  "name": "angular-seed-jade-gulp",
+  "description": "An AngularJS app for accessing the Factual API. Reads, writes to, and updates using the Factual API.",
+  "version": "0.0.1",
+  "homepage": "https://github.com/angular/factual-api-angularjs-php",
+  "license": "MIT",
+  "dependencies": {
+    "angular": "1.2.x",
+    "angular-route": "1.2.x",
+    "angular-bootstrap": "~0.11.0",
+    "bootstrap": "~3.2.0",
+    "jquery": "~2.1.1",
+    "ui-router": "~0.2.10",
+    "angular-cookie": "~4.0.2"
+  }
+}

@@ -1,0 +1,105 @@
+@mixin center-margins () {
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+}
+
+body {
+	padding-bottom: 20px;
+	font: 14px "Maven Pro", sans-serif;
+}
+
+form.search {
+	@include center-margins;
+	width: 50%;
+	input {
+		@include center-margins;
+		display: block;
+		margin-top: 10px;
+	}
+}
+
+.add-container {
+	button {
+		margin: 12px 6px;
+	}
+	.add-form {
+		margin: 15px 0;
+		padding: 15px 30px;
+		border: 1px solid gray;
+		@include border-radius(5px);
+		label {
+			display: block;
+		}
+		input {
+			display: inline-block;
+			margin-bottom: 4px;
+			margin-top:0;
+		}
+		button {
+			margin-top: 10px;
+		}
+	}
+}
+
+table.results {
+	width: 90%;
+	@include center-margins;
+	th {
+		text-transform: uppercase;
+	}
+}
+
+.center-margins {
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+}
+
+.left-justify {
+	text-align: left;
+}
+.right-justify {
+	text-align: right;
+}
+.center-justify {
+	text-align: center;
+}
+
+.modal-body {
+	margin: 15px 30px;
+	input {
+		display: block;
+	}
+	label {
+		margin-top: 4px;
+		text-transform: uppercase;
+	}
+}
+
+p.alert {
+	margin: 10px 0;
+}
+
+.results-container {
+	margin-top: 25px;
+}
+
+form {
+	h4 {padding-top: 5px;}
+	#name, #address, #website {
+		width: 100%;
+	}
+}
+
+.header {
+	margin: 25px 0;
+}
+
+.footer {
+	margin: 25px 0;
+	p { margin-top: 15px; }
+}
+.spaced {
+	margin: 6px;
+}
