@@ -22,9 +22,19 @@ Before navigating to the page, edit _[project path]/services/api.php_ so that th
 public function connect() { $this->factual = new Factual("YOUR_KEY_HERE", "YOUR_SECRET_HERE"); }
 ```
 
---has your own Factual API 0auth key and secret.
+--has your own Factual API 0auth key and secret. You may also need to edit _[project path]/js/app.js_ so that the following line--
+
+```JavaScript
+var serviceBase = "/factual-api-angularjs-php/services/";
+```
+
+--reflects your actual project path.
 
 Then open _index.php_ in a modern browser.
+
+### Troubleshooting
+
+Double-check your paths and, if necessary, chmod/chown your folders appropriately.
 
 ### License
 This program is licensed udner the MIT license. Have fun with it.

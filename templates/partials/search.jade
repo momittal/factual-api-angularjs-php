@@ -4,53 +4,11 @@
 			form.search.form-search
 				fieldset
 					input.search-query.form-control(type="text" name="query" placeholder="type what you're looking for" ng-model="query" autofocus)
-					.add-container.center-justify(ng-controller="collapseController")
+					.add-container.center-justify(ng-controller="addEntryCollapseController")
 						button.btn.btn-primary(type="submit" ng-click="getData()") get data
-						button.btn.btn-success(ng-click="toggle()") add data
+						button.btn.btn-success(ng-click="toggle()") {{buttonText}}
 						.collapsed.left-justify(collapse="isCollapsed")
-							.add-form.left-justify(ng-controller="addEntryController")
-								.row
-									.col-md-12
-										h2 add an entry to the database
-								.row
-									.col-md-12
-										h4 Name
-								.row
-									.col-md-12
-										label(for="name") Name
-										input(type="text" id="name" ng-model="name" placeholder="Dewey, Cheatham, & Howe")
-								.row
-									.col-md-12
-										h4 Address and Location Details
-								.row
-									.col-md-6.left-justify
-										label(for="address") Address
-										input(type="text" id="address" ng-model="address" placeholder="12 Dante's Inferno")
-										label(for="address") City
-										input(type="text" ng-model="locality" placeholder="San Diego")
-										label(for="region") State/Region
-										input(type="text" ng-model="region" placeholder="CA")
-									.col-md-6.left-justify
-										label(for="postcode") Postcode
-										input(type="text" ng-model="postcode" placeholder="92110")
-										label(for="country") Country
-										input(type="text" ng-model="country" placeholder="USA")
-								.row
-									.col-md-12
-										h4 Contact Details
-								.row
-									.col-md-6
-										label(for="tel") Phone
-										input(type="tel" ng-model="tel" placeholder="555-555-5555")
-									.col-md-6
-										label(for="tel") Website URL
-										input(type="website" id="website" ng-model="website" placeholder="http://www.deweycheatamandhowe.com")
-								.row
-									.col-md-12.right-justify
-										button.btn.btn-success(ng-click="add()") submit
-								.row(ng-if="messageAdd.text")
-									.col-md-12.center-justify
-										p.alert(class="{{messageAdd.type}}") {{messageAdd.text}}
+							include forms/_add.jade
 			p.alert.center-justify(ng-if="messageGetData.text" class="{{messageGetData.type}}") {{messageGetData.text}}
 	.row.results-container
 		.col-md-12
@@ -66,6 +24,7 @@
 					th URL
 					th Labels
 					th
+					th
 				tbody(ng-repeat="entry in data")
 					td {{entry.name}}
 					td {{entry.address}}
@@ -77,49 +36,38 @@
 					td {{entry.website}}
 					td: span(ng-repeat="label in entry.category_labels[0]") {{label}};&nbsp;
 					td
+						.flag-entry-modal(ng-controller="flagEntryModalController")
+							button.btn.btn-danger(ng-click="open(entry)") flag
+							script(type="text/ng-template" id="flagEntryModal.html")
+								.modal-header
+									h3.center-justify {{entry.name}}
+								.modal-body
+									p.center-justify What do you want to flag #[em {{entry.name}}] for?
+									form.flag.center-margins.center-justify
+										select.center-margins.center-justify(name="problem" ng-model="problem")
+											option(value="duplicate" selected) duplicate
+											option(value="inappropriate") inappropriate
+											option(value="nonexistent") nonexistent
+											option(value="relocated") relocated
+											option(value="spam") spam
+								.modal-footer(ng-controller="flagEntryController")
+									p.alert.center-justify(ng-if="messageFlag.text" class="{{messageFlag.type}}") {{messageFlag.text}}
+									button.btn.btn-danger(ng-click="flag(entry)" type="submit" ng-if="!messageFlag.text") flag
+									button.btn.btn-primary(ng-click="ok()" ng-if="!messageFlag.text") nevermind
+									button.btn.btn-primary(ng-click="ok()" ng-if="messageFlag.text") ok
+					td
 						.edit-entry-modal(ng-controller="editEntryModalController")
 							button.btn.btn-primary(ng-click="open(entry)") edit
 							script(type="text/ng-template" id="myModalContent.html")
 								.modal-header
-									h2.center-justify(ng-if="entry.name == name") {{entry.name}}
+									h2.center-justify {{entry.name}}
 								.modal-body
 									form.edit
-										.row
-											.col-md-12
-												label.control-label(for="name") Name
-												input(type="text" id="name" value="{{entry.name}}")
-										.row
-											.col-md-12
-												h3 Address and Location Details
-										.row
-											.col-md-6
-												label(for="address") Address
-												input(type="text" id="address" value="{{entry.address}}")
-												label(for="address") City
-												input(type="text" id="locality" value="{{entry.locality}}")
-												label(for="region") State/Region
-												input(type="text" id="region" value="{{entry.region}}")
-											.col-md-6
-												label(for="postcode") Postcode
-												input(type="text" id="postcode" value="{{entry.postcode}}")
-												label(for="country") Country
-												input(type="text" id="country" value="{{entry.country}}")
-										.row
-											.col-md-12
-												h3 Contact Details
-										.row
-											.col-md-6
-												label(for="tel") Phone
-												input(type="tel" id="tel" value="{{entry.tel}}")
-											.col-md-6
-												label(for="tel") Website URL
-												input(type="website" id="website" ng-model="website" value="{{entry.website}}")
-										.row
-											.col-md-12
+										include forms/_edit.jade
 								.modal-footer(ng-controller="editEntryController")
 									p.alert.center-justify(ng-if="messageEdit.text" class="{{messageEdit.type}}") {{messageEdit.text}}
-									button.btn.btn-primary(ng-click="edit(entry)") submit
-									button.btn.btn-primary(ng-click="ok()") close
+									button.btn.btn-primary(ng-click="edit(entry)" ng-if="!messageEdit.success") submit
+									button.btn.btn-danger(ng-click="ok()") close
 									.footer.center-justify
 										img(src="img/hrwlogo1.png")
 	.row

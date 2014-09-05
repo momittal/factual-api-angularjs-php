@@ -1,9 +1,9 @@
 "use strict";
 
-var app = angular.module("myApp", [
-	"myApp.filters",
-	"myApp.services",
-	"myApp.directives",
+var app = angular.module("app", [
+	"app.filters",
+	"app.services",
+	"app.directives",
 	"viewControllers",
 	"ui.router",
 	"ui.bootstrap",
@@ -11,14 +11,21 @@ var app = angular.module("myApp", [
 ]);
 
 app.factory("services", ["$http", function($http) {
-	var serviceBase = "/factualapi/services/";
+	var serviceBase = "/factual-api-angularjs-php/services/";
 	var obj = {};
-	obj.test = function($scope) {
+	obj.getData = function($scope) {
 		return $http({
 			method: "GET",
-			url: serviceBase + "test?query=" + $scope.query
+			url: serviceBase + "getData?query=" + $scope.query
 		});
 	};
+	obj.flagEntry = function($scope, entry) {
+		return $http({
+			method: "GET",
+			url: serviceBase + "flagEntry?id=" + entry.factual_id
+				+ "&problem=" + $scope.problem
+		});
+	}
 	obj.editEntry = function(entry) {
 		return $http({
 			method: "GET",
@@ -30,6 +37,18 @@ app.factory("services", ["$http", function($http) {
 				+ "&country=" + entry.country
 				+ "&tel=" + entry.tel
 				+ "&website=" + entry.website
+				+ "&address_extended=" + entry.address_extended
+				+ "&neighborhood=" + entry.neighborhood
+				+ "&fax=" + entry.fax
+				+ "&latitude=" + entry.latitude
+				+ "&longitude=" + entry.longitude
+				+ "&hours=" + entry.hours
+				+ "&chain_id=" + entry.chain_id
+				+ "&po_box=" + entry.po_box
+				+ "&category_ids=" + entry.category_ids
+				+ "&email=" + entry.email
+				+ "&category_labels=" + entry.category_labels
+				+ "&chain_name=" + entry.chain_name
 		});
 	}
 	obj.addEntry = function($scope) {
@@ -43,6 +62,18 @@ app.factory("services", ["$http", function($http) {
 				+ "&country=" + $scope.country
 				+ "&tel=" + $scope.tel
 				+ "&website=" + $scope.website
+				+ "&address_extended=" + $scope.address_extended
+				+ "&neighborhood=" + $scope.neighborhood
+				+ "&fax=" + $scope.fax
+				+ "&latitude=" + $scope.latitude
+				+ "&longitude=" + $scope.longitude
+				+ "&hours=" + $scope.hours
+				+ "&chain_id=" + $scope.chain_id
+				+ "&po_box=" + $scope.po_box
+				+ "&category_ids=" + $scope.category_ids
+				+ "&email=" + $scope.email
+				+ "&category_labels=" + $scope.category_labels
+				+ "&chain_name=" + $scope.chain_name
 		});
 	}
 	return obj;

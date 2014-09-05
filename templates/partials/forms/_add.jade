@@ -1,0 +1,86 @@
+.add-form.left-justify(ng-controller="addEntryController")
+	.row
+		.col-md-12
+			h2 add an entry to the database
+	.row
+		.col-md-12
+			label.control-label(for="name") Name
+			input(ng-model="name" placeholder="e.g., Fenway Park" type="text" id="name")
+	.row
+		.col-md-12
+			h3 #[i.glyphicon.glyphicon-home] Address and Location Details
+	.row
+		.col-md-6
+			label(for="address") Address 1
+			input(ng-model="address" placeholder="e.g., 4 Yawkey Way" type="text" id="address")
+			label(for="address_extended") Address 2
+			input(ng-model="address_extended" placeholder="e.g., Ste A" type="text" id="address_extended")
+			//label(for="neighborhood") Neighborhood(s)
+			//input(ng-model="neighborhood" placeholder="e.g., Fenway" type="text" id="neighborhood")
+			label(for="po_box") PO Box
+			input(ng-model="po_box" placeholder="e.g., 12345" type="text" id="po_box")
+			label(for="locality") City
+			input(ng-model="locality" placeholder="e.g., Boston" type="text" id="locality")
+		.col-md-6
+			label(for="region") State/Region
+			input(ng-model="region" placeholder="e.g., MA" type="text" id="region")
+			label(for="postcode") Postcode
+			input(ng-model="postcode" placeholder="e.g., 02215" type="text" id="postcode")
+			label(for="country") Country
+			input(ng-model="country" placeholder="e.g., USA" type="text" id="country")
+	.row
+		.col-md-12
+			h3 #[i.glyphicon.glyphicon-earphone] Contact Details
+	.row
+		.col-md-6
+			label(for="tel") Phone
+			input(ng-model="tel" placeholder="e.g., (123) 456-7890" type="tel" id="tel")
+			label(for="fax") Fax
+			input(ng-model="fax" placeholder="e.g., (123) 456-7890" type="tel" id="fax")
+		.col-md-6
+			label(for="email") Email
+			input(ng-model="email" placeholder="e.g., john.henry@redsox.com" type="email" id="email")
+			label(for="tel") Website URL
+			input(ng-model="website" placeholder="e.g., http://redsox.com" type="text" id="website")
+	.row
+		.col-md-12
+			h3 #[i.glyphicon.glyphicon-globe] Geolocation Details
+	.row
+		.col-md-6
+			label(for="latitude") Latitude
+			input(ng-model="latitude" placeholder="e.g., 42.346806" type="text" id="latitude")
+		.col-md-6
+			label(for="longitude") Longitude
+			input(ng-model="longitude" placeholder="e.g., -71.097211" type="text" id="longitude")
+	.row
+		.col-md-12
+			h3 #[i.glyphicon.glyphicon-briefcase] Business Details
+	.row
+		.col-md-6
+			label(for="hours") Hours
+			input(ng-model="hours" placeholder="" type="text" id="hours")
+		.col-md-6
+			label(for="chain_id") Chain ID
+			input(ng-model="chain_id" placeholder="e.g., 12345" type="number" id="chain_id")
+			//label(for="chain_name") Chain Name
+			//input(ng-model="chain_name" placeholder="e.g., Major League Baseball" type="text" id="chain_name")
+	.row
+		.col-md-12
+			h3 #[i.glyphicon.glyphicon-th-list] Category Details
+	.row
+		.col-md-6
+			label(for="category_ids") Category IDs
+			textarea(ng-model="category_ids" type="number" id="category_ids")
+		.col-md-6
+			//label(for="category_labels") Category Labels
+			//textarea(ng-model="category_labels" type="text" id="category_labels")
+		.row
+			.col-md-12.right-justify
+				button.btn.btn-warning(ng-click="toggle()") hide
+				button.btn.btn-danger(ng-click="clear()") clear
+				button.btn.btn-success(ng-click="add()" ng-if="!messageAdd.success") submit
+		.row(ng-if="messageAdd.text")
+			.col-md-12.center-justify
+				p.alert(class="{{messageAdd.type}}") {{messageAdd.text}}
+
+
