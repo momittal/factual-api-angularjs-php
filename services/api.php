@@ -15,6 +15,10 @@ class API extends REST {
 		else $this->response("",404);
 	}
 	public function connect() { $this->factual = new Factual("YOUR_API_KEY", "YOUR_API_SECRET"); }
+	private function output($response) {
+		if ($res->success()) return $res->getJSON();
+		else return "Borked\n";
+	}
 	private function jsonify($data) { if(is_array($data)) return json_encode($data); }
 	private function getData() {
 		$query = new FactualQuery;
@@ -22,26 +26,23 @@ class API extends REST {
 		$query->search($_GET["query"]);
 		$res = $this->factual->fetch("us-sandbox",$query);
 		$result = $res->getDataAsJSON();
-		echo $result;
+		if ($result) echo $result;
+		else echo "Borked\n";
 	}
 	private function flagEntry() {
 		$flagger = new FactualFlagger;
 		$flagger->setFactualID($_GET["id"]);
 		$flagger->setTableName("us-sandbox");
-		$flagger->setUserToken("usertoken");
+		$flagger->setUserToken("someguy");
 		$flagger->setProblem($_GET["problem"]);
 		$res = $this->factual->flag($flagger);
-		if ($res->success()){
-			echo $res->getJSON();
-		} else {
-			echo "Borked\n";
-		}
+		$this->output($res);
 	}
 	private function editEntry() {
 		$submitterator = new FactualSubmittor;
 		$submitterator->strictMode();
 		$submitterator->setTableName("us-sandbox");
-		$submitterator->setUserToken("usertoken");
+		$submitterator->setUserToken("someguy");
 		$submitterator->setFactualID($_GET["id"]);
 		$submitterator->setValue("name","".$_GET["name"]."");
 		$submitterator->setValue("address","".$_GET["address"]."");
@@ -64,17 +65,13 @@ class API extends REST {
 		//$submitterator->setValue("category_labels","".$_GET["category_labels"]."");
 		//$submitterator->setValue("chain_name","".$_GET["chain_name"]."");
 		$res = $this->factual->submit($submitterator);
-		if ($res->success()){
-			echo $res->getJSON();
-		} else {
-			echo "Borked\n";
-		}
+		$this->output($res);
 	}
 	private function addEntry() {
 		$submitterator = new FactualSubmittor;
 		$submitterator->strictMode();
 		$submitterator->setTableName("us-sandbox");
-		$submitterator->setUserToken("usertoken");
+		$submitterator->setUserToken("someguy");
 		$submitterator->setValue("name","".$_GET["name"]."");
 		$submitterator->setValue("address","".$_GET["address"]."");
 		$submitterator->setValue("address_extended","".$_GET["address_extended"]."");
@@ -96,11 +93,7 @@ class API extends REST {
 		//$submitterator->setValue("category_labels","".$_GET["category_labels"]."");
 		//$submitterator->setValue("chain_name","".$_GET["chain_name"]."");
 		$res = $this->factual->submit($submitterator);
-		if ($res->success()){
-			echo $res->getJSON();
-		} else {
-			echo "Borked\n";
-		}	
+		$this->output($res);
 	}
 }
 
